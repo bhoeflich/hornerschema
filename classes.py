@@ -16,7 +16,7 @@ class Polynomial:
         return list(reversed(self.coeffs))"""
 
     def has_nst(self):
-        return self.guess_nst() is not None
+        return self.guess_nstRational() is not None
 
     def get_y(self, x):
         y = 0
@@ -34,7 +34,7 @@ class Polynomial:
 
 
     def guess_nst(self):
-        divisors = functions.get_divisorsInt(self.coeffsReversed[0])
+        divisors = functions.get_divisorsAll(self.coeffsReversed[0])
         print(divisors)
         for divisor in divisors:
             curVal = self.get_y_new(divisor)
@@ -47,8 +47,8 @@ class Polynomial:
 # quasi p{}/q{} Kombinationen
 
     def guess_nstRational(self):
-        p_divisors = functions.get_divisorsInt(self.coeffsReversed[0])
-        q_divisors = functions.get_divisorsInt(self.coeffs[0])
+        p_divisors = functions.get_divisorsAll(self.coeffsReversed[0])
+        q_divisors = functions.get_divisorsAll(self.coeffs[0])
 
         for p_divisor in p_divisors:
             for q_divisor in q_divisors:
@@ -73,9 +73,9 @@ class Polynomial:
 
 
 
-p1 = Polynomial([5, -8, -27, 18])
+# p1 = Polynomial([5, -8, -27, 18])
 
-print(p1.guess_nst())
+#print(p1.guess_nst())
 
 
 
