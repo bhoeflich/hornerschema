@@ -3,22 +3,24 @@ import functions
 
 class Polynomial:
     def __init__(self, coeffs):
+        self.coeffs = coeffs
         self.degree = len(coeffs)-1
-        self.coeffs = list(reversed(coeffs))
-        self.coeffsNotreversed = coeffs
+
+        self.coeffsReversed = list(reversed(coeffs))
+
 
     def get_degree(self):
         return self.degree
 
-    def get_coeffs(self):
-        return list(reversed(self.coeffs))
+    """def get_coeffs(self):
+        return list(reversed(self.coeffs))"""
 
     def has_nst(self):
         return self.guess_nst() is not None
 
     def get_y(self, x):
         y = 0
-        for power, coeff in enumerate(self.coeffs):
+        for power, coeff in enumerate(self.coeffsReversed):
             y += coeff * pow(x, power)
         print(f'zugehöriger y Wert = {y}')
         return y
@@ -26,16 +28,12 @@ class Polynomial:
         # enumerate macht liste mit indizes
 
     def guess_nst(self):
-        divisors = functions.get_divisorsInt(self.coeffs[0])
+        divisors = functions.get_divisorsInt(self.coeffsReversed[0])
         print(divisors)
-        #Satz von rationalen nullstellen einbauen
         for divisor in divisors:
             curVal = self.get_y(divisor)
             if curVal == 0:
                 return divisor
-           # negVal = self.get_y(divisor * -1)
-           # if negVal == 0:
-           #     return divisor * -1
         return None
 
 # Kombi aus Teilermengen von p und q bilden NST, wenn vorhanden!
@@ -43,8 +41,8 @@ class Polynomial:
 # quasi p{}/q{} Kombinationen
 
     def guess_nstRational(self):
-        p_divisors = functions.get_divisorsInt(self.coeffs[0])
-        q_divisors = functions.get_divisorsInt(self.coeffsNotreversed[0])
+        p_divisors = functions.get_divisorsInt(self.coeffsReversed[0])
+        q_divisors = functions.get_divisorsInt(self.coeffs[0])
 
         for p_divisor in p_divisors:
             for q_divisor in q_divisors:
@@ -55,22 +53,30 @@ class Polynomial:
 
 
 
-
-           # negVal = self.get_y(divisor * -1)
-           # if negVal == 0:
-           #     return divisor * -1
-
     def horner(self, nst):
-        pass
-        #inputvalid()
-
-p1 = Polynomial([3, 3, 2, 1, 5, 5])
-p2 = Polynomial([3, 4, 5, 6])
-p3 = Polynomial([1, -2, -3])
-p4 = Polynomial([1, -2.5, 1.5])
-p5 = Polynomial([1, -4, -8, 13, 10])
-print(p5.guess_nstRational())
-
+        newCoeffs = []
+        for i, co in enumerate(self.coeffs):
+            if i == 0:
+                newCoeffs.append(self.coeffs[0])
+            else:
+                newCoeffs.append(self.coeffs[i]+(nst*newCoeffs[i-1]))
+            print(newCoeffs)
+        return newCoeffs
 
 
-#print(p1.get_degree())
+
+        """for c in coeffs, range(1, len(coeffs)):
+            before = newCoeffs[]
+            newCoeffs.append(nst*)"""
+
+
+
+
+
+
+p1 = Polynomial([5, -8, -27, 18])
+
+print(p1.horner(-2))
+
+
+

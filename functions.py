@@ -7,7 +7,7 @@ def inputvalid(txt):
     else:
         return inputvalid(f'Input {x} invalid, try again please ')
 
-#findet ganzahlige Teiler einer Zahl
+# alte version
 def get_divisors(x):
     divisors = []
     abs_x = abs(x)
