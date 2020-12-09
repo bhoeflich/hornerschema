@@ -17,4 +17,13 @@ def get_divisors(x):
             divisors.append(rounded_p)
     return divisors
 
+def get_divisorsInt(x):
+    divisors = []
+    abs_x = abs(x)
+    for p in range(1, abs_x + 1):
+        if abs_x%p == 0:
+            divisors.append(p)
+            divisors.append(-p)
+    return divisors
+
 
