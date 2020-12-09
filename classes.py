@@ -27,11 +27,17 @@ class Polynomial:
         # https://treyhunner.com/2016/04/how-to-loop-with-indexes-in-python/
         # enumerate macht liste mit indizes
 
+    def get_y_new(self, x):
+        newCoeffs = self.horner(x)
+        return newCoeffs[-1]
+
+
+
     def guess_nst(self):
         divisors = functions.get_divisorsInt(self.coeffsReversed[0])
         print(divisors)
         for divisor in divisors:
-            curVal = self.get_y(divisor)
+            curVal = self.get_y_new(divisor)
             if curVal == 0:
                 return divisor
         return None
@@ -46,7 +52,7 @@ class Polynomial:
 
         for p_divisor in p_divisors:
             for q_divisor in q_divisors:
-                curVal = self.get_y(p_divisor/q_divisor)
+                curVal = self.get_y_new(p_divisor/q_divisor)
                 if curVal == 0:
                     return p_divisor/q_divisor
         return None
@@ -60,14 +66,7 @@ class Polynomial:
                 newCoeffs.append(self.coeffs[0])
             else:
                 newCoeffs.append(self.coeffs[i]+(nst*newCoeffs[i-1]))
-            print(newCoeffs)
         return newCoeffs
-
-
-
-        """for c in coeffs, range(1, len(coeffs)):
-            before = newCoeffs[]
-            newCoeffs.append(nst*)"""
 
 
 
@@ -76,7 +75,7 @@ class Polynomial:
 
 p1 = Polynomial([5, -8, -27, 18])
 
-print(p1.horner(-2))
+print(p1.guess_nst())
 
 
 
