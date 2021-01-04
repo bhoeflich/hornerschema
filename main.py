@@ -1,22 +1,16 @@
 import functions
 from classes import Polynomial
-"""
-polynom = Polynomial(functions.get_poly('Bitte geben sie den Grad des Polynomes ein: ', ''))
 
+print('Moin, dieses kleine Python Programm funktioniert für \nPolynome mit rationalen Nullstellen. Viel Spaß damit...\n')
+
+polynom = Polynomial(functions.get_poly('Bitte gib den Grad des Polynomes ein: \n'))
 
 if polynom.has_nst():
-    nst = polynom.guess_nstRational()
-    newCoeffs = polynom.horner(nst)
+    newCoeffs = polynom.horner(polynom.guess_nstRational())
     newCoeffs.pop()
-    print(f'{nst} ist die Nullstelle die für das Horner Schema verwendet wird...')
-    print(f'Die Koeffeffizienten des reduzierten Polynomes sind {newCoeffs}')
+    print(f'{polynom.guess_nstRational()} ist die Nullstelle die für das Horner Schema verwendet wird. \n{newCoeffs} sind die Koeffeffizienten des reduzierten Polynomes {len(newCoeffs)}. Grades.')
 else:
     print('Es konnte leider keine Nullstelle gefunden werden...')
-    
-"""
-
-x = functions.inputvalidNotNegative('her mit der zahl')
-print(x)
 
 
 
