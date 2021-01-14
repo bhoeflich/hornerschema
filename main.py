@@ -14,8 +14,8 @@ if polynom.has_nst():
           f' sind die Koeffizienten des reduzierten Polynomes {len(new_coeffs)}. Grades.')
 
     # polynom_new = Polynomial(new_coeffs)
-    # polynom.plotPoly()
-    # polynom_new.plotPoly()
+    # polynom.plot_poly()
+    # polynom_new.plot_poly()
 else:
     print('Es konnte leider keine Nullstelle gefunden werden...')
 

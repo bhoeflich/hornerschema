@@ -61,7 +61,7 @@ class Polynomial:
         return new_coeffs
 
     #Spielkram
-    def plotPoly(self):
+    def plot_poly(self):
         xs = [x / 10 for x in range(-100, 101)]
         ys = [self.get_y_new(x) for x in xs]
         plt.plot(xs, ys)
